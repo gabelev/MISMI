@@ -2,12 +2,17 @@ from tracker_functions import Tracker
 from reformat_functions import Reformat
 from endpoints import Search_all
 from asins import business_search_asins, business_tracking, amish_asin, all_search_asins, all_tracking
+from url_function import Url_builder
+from keyword_list import terms_list
+
 
 class Runner(object):
 
 	@classmethod
 	def all_search_runner(self):
 	    print("----MSG: Running All Search")
+	    ## Serach all is endpoints
+	    endpoint = Url_builder.url_dict_builder(2, terms_list)
 	    all_search_result = Tracker.run_spider_run(Search_all, all_search_asins)
 	    reformat.make_pickle(all_search_result, "all_search")
 	    reformat.reformat_data_add_column(all_search_result, 'all_search', 'search', all_tracking, collection_all_search)
