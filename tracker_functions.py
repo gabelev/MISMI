@@ -1,9 +1,17 @@
-from retry import retry as _retry
+from bs4 import BeautifulSoup
 import urllib2
+import lxml
+import lxml.etree
+import datetime
+import requests
+import re
+import urllib2
+import time
 
+from retry import retry as _retry
 from endpoints import Search_all
 from asins import business_search_asins, business_tracking, amish_asin, all_search_asins, all_tracking
-import time
+
 
 class Tracker(object):
 
@@ -26,30 +34,30 @@ class Tracker(object):
 
 	@staticmethod
 	def convert_index(result_list):
-	    getidx = lambda s: 1 + int(self.remove_prefix(s, 'result_'))
+	    getidx = lambda s: 1 + int(Tracker.remove_prefix(s, 'result_'))
 	    return [(getidx(s), asin) for s, asin in result_list]
 
-	
+	@staticmethod
 	@_retry(urllib2.URLError, tries=4, delay=3, backoff=2)
-	def urlopen_with_retry(self, url):
+	def urlopen_with_retry(url):
 	    return urllib2.urlopen(url)
 
 	@staticmethod
 	def Amz_Search_Results(endpoint, isbn_set):
-	    amz = urlopen_with_retry(endpoint)
+	    amz = Tracker.urlopen_with_retry(endpoint)
 	    soup = BeautifulSoup(amz, "lxml")
 	    findone = BeautifulSoup(str(soup.find_all("li", class_="s-result-item")))
 	    elements = findone.find_all('li')
-	    iter_data = self.iter_elements_extract_or_skip_attributes(elements, 'id', 'data-asin')
+	    iter_data = Tracker.iter_elements_extract_or_skip_attributes(elements, 'id', 'data-asin')
 	    return [item for item in iter_data if item[1] in isbn_set]
 
 	@staticmethod
 	def Amz_Search_Results_alt(endpoint, isbn_set):
-	    amz = urlopen_with_retry(endpoint)
+	    amz = Tracker.urlopen_with_retry(endpoint)
 	    soup = BeautifulSoup(amz, "lxml")
 	    findone = BeautifulSoup(str(soup.find_all("div", attrs={"id": "mainResults"})))
 	    elements = findone.find_all('div')
-	    iter_data = self.iter_elements_extract_or_skip_attributes(elements, 'id', 'name')
+	    iter_data = Tracker.iter_elements_extract_or_skip_attributes(elements, 'id', 'name')
 	    return [item for item in iter_data if item[1] in isbn_set]
 
 	@staticmethod
@@ -82,7 +90,7 @@ class Tracker(object):
 	            if x == []:
 	                time.sleep(0.5)
 	                x = self.Amz_Search_Results_alt(url, isbn_set)
-	            results.extend(self.convert_index(x))
+	            results.extend(Tracker.convert_index(x))
 	            results_dict[key] = results
 	    return self.results_dict
 
