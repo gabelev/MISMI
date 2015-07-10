@@ -2,24 +2,23 @@ __author__ = 'glevine@penguinrandomhouse.com'
 
 from bs4 import BeautifulSoup
 import urllib2
-import csv
-import pandas as pd
+
+
 import time
 import lxml
-import datetime
-import pickle
+import csv
 import requests
 import re
 import sys
 import os
-import pymongo
+
 
 from retry import retry as _retry
 from tracker_functions import Tracker
 from reformat_functions import Reformat
 from runner_functions import Runner
 
-from endpoints import Search_all
+# from endpoints import Search_all
 from asins import business_search_asins, business_tracking, amish_asin, all_search_asins, all_tracking
 
 reload(sys)
@@ -41,18 +40,12 @@ sys.setdefaultencoding("utf-8")
 if __name__ == "__main__":
 
     home_msg = "----- MISMI: AMAZON TRACKING TOOL \n---- by G.Levine"
-    db_msg = "----- MSG: DATABASE ACTIVE - MongoDB"
+    db_msg = "----- MSG: ACTIVATE DATABASE - MongoDB"
     last_msg = "----- AMAZON TRACKING Complete. Have a nice day."
 
     print(home_msg)
 
-    conn = pymongo.MongoClient()
-    db = conn.amzdb
-    collection_amish_bestseller = db.amish_bestseller
-    collection_amish_category = db.amish_category
-    collection_amish_search = db.amish_search
-    collection_business_search = db.business_search
-    collection_all_search = db.all_search
+
 
     print(db_msg)
     print("Which tracker would you like to run?")

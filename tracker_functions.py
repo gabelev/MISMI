@@ -9,7 +9,7 @@ import urllib2
 import time
 
 from retry import retry as _retry
-from endpoints import Search_all
+# from endpoints import Search_all
 from asins import business_search_asins, business_tracking, amish_asin, all_search_asins, all_tracking
 
 
@@ -80,7 +80,7 @@ class Tracker(object):
 
 	@classmethod
 	def run_spider_run(self, item_search, isbn_set):
-	    results_dict = {}
+	    self.results_dict = {}
 	    for key, value in item_search.iteritems():
 	        results = []
 	        for url in value:
@@ -91,17 +91,17 @@ class Tracker(object):
 	                time.sleep(0.5)
 	                x = self.Amz_Search_Results_alt(url, isbn_set)
 	            results.extend(Tracker.convert_index(x))
-	            results_dict[key] = results
+	            self.results_dict[key] = results
 	    return self.results_dict
 
 	@classmethod
 	def run_spider_bestseller(self, item_search, isbn_set):
-	    results_dict = {}
+	    self.results_dict = {}
 	    for key, value in item_search.iteritems():
 	        results = []
 	        for url in value:
 	            time.sleep(0.5)
 	            x = self.Amz_bestseller(url, isbn_set)
 	            results.extend(x)
-	            results_dict[key] = results
+	            self.results_dict[key] = results
 	    return self.results_dict

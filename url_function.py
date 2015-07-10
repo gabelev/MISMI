@@ -17,6 +17,6 @@ class Url_builder(object):
 	    result = {}
 	    for term in set_of_terms:
 	        urls_term = {}
-	        urls = url_builder(page_range, term)
+	        urls = self.url_builder(page_range, term)
 	        result[term] = urls
-	    yield result
+	    return result
