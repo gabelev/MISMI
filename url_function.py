@@ -44,16 +44,6 @@ class Url_builder(object):
             result[urls_term] = urls
         return result
     
-
-	# @staticmethod
-	# def url_builder(page_range, terms):
-	#     base_url = 'http://www.amazon.com/s/rh=%2Ck%3A'
-	#     page = '&page='
-	#     plus = '+'
-	#     search_terms = plus.join(terms.split())
-	#     return [base_url + search_terms + page + str(i) for i in range(1, page_range+1)]
-
-
 	# @classmethod
 	# def url_dict_builder(self, page_range, list_of_terms):
 	#     set_of_terms = set(list_of_terms)

@@ -3,10 +3,14 @@ import pickle
 import pandas as pd
 import csv
 
+
+
+       # reformat.reformat_data_add_column(all_search_result, 'all_search', 'search', all_tracking, collection_all_search)
+
 class Reformat(object):
 
 	@classmethod
-	def reformat_data_add_column(self, data_name, output_name, rank_type, tracking_asin, database_collection):
+	def reformat_data_add_column(self, data_name, output_name, tracking_asin, database_collection):
 	    df = pd.DataFrame.from_dict(data_name, orient='index')
 	    data = df.transpose()
 	    results = []
@@ -21,7 +25,7 @@ class Reformat(object):
 	                tracking = 'no'
 	                if number in tracking_asin:
 	                    tracking = 'yes'
-	                x = index, rank, number, rank_type, today, tracking
+	                x = index[0], rank, number, index[1], today, tracking
 	                results.append(x)
 	    name = output_name + "_" + today.replace(" ", "_").replace(".", ":") + '.csv'
 	    myfile = open(name, 'wb')
@@ -39,7 +43,7 @@ class Reformat(object):
 	    print("----- MSG: NEXT PROCESS STARTING")
 
 	@classmethod
-	def reformat_data_add_column_bestseller(self, data_name, output_name, rank_type, tracking_asin, database_collection):
+	def reformat_data_add_column_bestseller(self, data_name, output_name, tracking_asin, database_collection):
 	    df = pd.DataFrame.from_dict(data_name, orient='index')
 	    data = df.transpose()
 	    results = []
@@ -54,7 +58,7 @@ class Reformat(object):
 	                tracking = 'no'
 	                if number in tracking_asin:
 	                    tracking = 'yes'
-	                x = index, rank, number, rank_type, today, tracking
+	                x = index[0], rank, number, index[1], today, tracking
 	                results.append(x)
 	    name = output_name + "_" + today.replace(" ", "_").replace(".", ":") + '.csv'
 	    myfile = open(name, 'wb')

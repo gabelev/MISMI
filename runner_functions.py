@@ -20,13 +20,12 @@ class Runner(object):
         collection_business_search = db.business_search
         collection_all_search = db.all_search
         print("----MSG: Running All Search")
-        ## Serach all is endpoints
         url = Url_builder()
         endpoint = url.url_dict_builder(20, terms_list)
         all_search_result = Tracker.run_spider_run(endpoint, all_search_asins)
         reformat = Reformat()
-        reformat.make_pickle(all_search_result, "all_search")
-        reformat.reformat_data_add_column(all_search_result, 'all_search', 'search', all_tracking, collection_all_search)
+        # reformat.make_pickle(all_search_result, "all_search")
+        reformat.reformat_data_add_column(all_search_result, 'all_search', all_tracking, collection_all_search)
 
     # @classmethod
     # def business_search_runner():

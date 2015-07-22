@@ -48,27 +48,31 @@ if __name__ == "__main__":
 
 
     print(db_msg)
-    print("Which tracker would you like to run?")
-    print("All, All Search, Business Search, All Amish, Amish Search, Amish Category, Amish Bestseller?")
+    print("Would you like to run the tracker? Yes")
+    # print("Which tracker would you like to run?")
+    # print("All, All Search, Business Search, All Amish, Amish Search, Amish Category, Amish Bestseller?")
     action = raw_input("> ")
-    if action == "All":
-        runner.all_runner()
-    if action == "All Search":
+    if action == "Yes":
         run = Runner()
         run.all_search_runner()
-    if action == "Business Search":
-        runner.business_search_runner()
-    if action == "Amish Search":
-        runner.amish_search_runner()
-    if action == "Amish Category":
-        runner.amish_category_runner()
-    if action == "Amish Bestseller":
-        runner.amish_bestseller_runner()
-    if action == "All Amish":
-        print("Running through all Amish")
-        runner.amish_category_runner()
-        runner.amish_search_runner()
-        runner.amish_bestseller_runner()
+    # if action == "All":
+    #     runner.all_runner()
+    # if action == "All Search":
+    #     run = Runner()
+    #     run.all_search_runner()
+    # if action == "Business Search":
+    #     runner.business_search_runner()
+    # if action == "Amish Search":
+    #     runner.amish_search_runner()
+    # if action == "Amish Category":
+    #     runner.amish_category_runner()
+    # if action == "Amish Bestseller":
+    #     runner.amish_bestseller_runner()
+    # if action == "All Amish":
+    #     print("Running through all Amish")
+    #     runner.amish_category_runner()
+    #     runner.amish_search_runner()
+    #     runner.amish_bestseller_runner()
     # else:
     #     print("please input again")
 
