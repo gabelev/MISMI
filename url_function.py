@@ -20,7 +20,7 @@ class Url_builder(object):
     
     @staticmethod
     def url_builder_kindle(page_range, terms):
-        base_url = 'http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords='
+        base_url = 'http://www.amazon.com/s/ref=nb_sb_noss_2?url=node%3D154606011&field-keywords='
         page = '&page='
         plus = '+'
         search_terms = plus.join(terms.split())

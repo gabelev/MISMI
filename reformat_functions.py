@@ -38,7 +38,7 @@ class Reformat(object):
 	    dex = output_name+"_"+today[0:10]
 	    results_d = {}
 	    results_d[dex] = results
-	    database_collection.insert(results_d)
+	    # database_collection.insert(results_d)
 	    print("----- MSG: DATABASE Write")
 	    print("----- MSG: NEXT PROCESS STARTING")
 
@@ -71,7 +71,7 @@ class Reformat(object):
 	    dex = output_name+"_"+today[0:10]
 	    results_d = {}
 	    results_d[dex] = results
-	    database_collection.insert(results_d)
+	    # database_collection.insert(results_d)
 	    print("----- MSG: DATABASE Write")
 	    print("----- MSG: NEXT PROCESS STARTING")
 

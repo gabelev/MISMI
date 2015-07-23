@@ -1,4 +1,5 @@
 __author__ = 'glevine@penguinrandomhouse.com'
+__version__ = 'MISMI 0.3'
 
 from bs4 import BeautifulSoup
 import urllib2
